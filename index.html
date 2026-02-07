@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine? 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico\&family=Poppins:wght@300;400;600\&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 35px 25px;
+      border-radius: 25px;
+      text-align: center;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+      animation: fadeIn 1.2s ease;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ff4b6e;
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #444;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+    .gif-box img {
+      width: 170px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    button {
+      background: #ff4b6e;
+      border: none;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #ff2f5c;
+    }
+
+    #noBtn {
+      background: #999;
+      position: relative;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: #ff2f5c;
+      animation: pop 0.5s ease;
+      min-height: 40px;
+    }
+
+    /* Floating Hearts */
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 20px;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.7;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.5); }
+      100% { transform: translateY(-10vh) scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Hey Babe 😘</h1>
+    <p>Will you be my Valentine ? 💕</p>
+
+    <div class="gif-box">
+      <img src="https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif" alt="Cute Cartoon Love">
+    </div>
+
+    <div class="buttons">
+      <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+      <button id="noBtn" onmouseover="moveButton()">No 😜</button>
+    </div>
+
+    <div id="message" class="message"></div>
+  </div>
+
+  <script>
+    const messages = [
+      "Thank you My Love 😍💘",
+      "Send me Boobies 💕🥰",
+      "Yay! Date confirmed 💃🕺",
+      "I love you more Baccha❤️",
+      "Can't wait to see you 😘"
+    ];
+
+    function sayYes() {
+      const msg = document.getElementById("message");
+      const random = Math.floor(Math.random() * messages.length);
+      msg.innerText = messages[random];
+
+      for (let i = 0; i < 15; i++) {
+        createHeart();
+      }
+    }
+
+    function moveButton() {
+      const btn = document.getElementById("noBtn");
+      const x = Math.random() * 250 - 120;
+      const y = Math.random() * 200 - 100;
+
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    // Auto floating hearts
+    setInterval(createHeart, 1800);
+  </script>
+
+</body>
+</html>
